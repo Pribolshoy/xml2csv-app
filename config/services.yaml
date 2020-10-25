@@ -4,8 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app.shop_login: '_xmlexport'
-    app.shop_pass: '6666666'
+    app.shop_login: '18385_xmlexport'
+    app.shop_pass: 'e2Glr3'
     app.api_path: 'https://%app.shop_login%:%app.shop_pass%@api2.gifts.ru/export/v2/catalogue/'
     app.catalogue_path: '%app.api_path%catalogue.xml'
     app.stock_path: '%app.api_path%stock.xml'

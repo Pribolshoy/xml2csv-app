@@ -57,8 +57,8 @@ class AppController extends AbstractController
      */
     public function index()
     {
-        if (!$this->getParameter('app.shop_pass') && !$this->getParameter('app.shop_login')) {
-            throw new Exception("Не установлены логин (app.shop_login) и пароль (app.shop_pass) для доступа к серверу. ");
+        if (!$this->getParameter('app.shop_pass') || !$this->getParameter('app.shop_login')) {
+            throw new Exception("Не установлены логин (app.shop_login) или пароль (app.shop_pass) для доступа к серверу. ");
         }
 
         $config = $this->getParameter('app.parser');
@@ -100,14 +100,6 @@ class AppController extends AbstractController
         $this->csv_stock_maker->setDocument($this->parser->stock);
         $this->csv_stock_maker->setOutputdir($app_dir . DIRECTORY_SEPARATOR . $this->files_dir);
         $this->csv_stock_maker->run();
-
-
-//        print '<pre>';
-//        print_r( $this->collector->getCategories() );
-//        print_r( $this->collector->getProducts() );
-//        print_r( $this->parser->stock );
-//        print '</pre>';
-//        return;
 
         return $this->render('app/index.html.twig', []);
     }

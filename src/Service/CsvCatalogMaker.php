@@ -124,15 +124,17 @@ class CsvCatalogMaker extends BaseCsvMaker
 
         if ($parent_product['products']) {
             foreach( $parent_product['products'] as $product ) {
-                $string .= $this->addChildRow($product);
+                $string .= $this->addChildRow($product, $parent_product);
             }
         }
 
         return $string;
     }
 
-    protected function addChildRow($product) {
+    protected function addChildRow($product, $parent_product) {
         $string = '';
+
+        $edition = '"' . $parent_product['edition_name'] . ' ' . $product['editions'] . '"';
 
         $cols = [
             $product['uid'],
@@ -144,7 +146,7 @@ class CsvCatalogMaker extends BaseCsvMaker
             $product['photo'],
             $product['price'],
             $product['quantity'],
-            $product['editions'],
+            $edition,
             $product['parent_uid'],
             '', //matherial
             '', //print
