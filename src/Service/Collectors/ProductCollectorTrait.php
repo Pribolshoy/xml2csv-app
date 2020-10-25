@@ -21,6 +21,7 @@ trait ProductCollectorTrait
                                 } else {
                                     $product_data[$category_id][$parent_product['uid']] = $parent_product;
                                     $product_data[$category_id][$parent_product['uid']]['category_name'] = $subcategory['name'];
+                                    $product_data[$category_id][$parent_product['uid']]['edition_name'] = $subcategory['edition_name'];
                                     $product_data[$category_id][$parent_product['uid']]['products'] = [];
                                     $product_data[$category_id][$parent_product['uid']]['products'][$product_id] = $product;
                                 }

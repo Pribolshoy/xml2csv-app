@@ -8,12 +8,19 @@ trait CategoryCollectorTrait
 {
     protected $limit;
     protected $counter;
+    protected $edition_name;
 
     protected function collectCategories($categories, $config) {
         foreach ($config as $search_category_id => $config_data) {
             if (isset($config_data['limit'])) {
                 $this->limit = $config_data['limit'];
                 $this->counter = 0;
+            }
+
+            if (isset($config_data['edition_name'])) {
+                $this->edition_name = $config_data['edition_name'];
+            } else {
+                $this->edition_name = '';
             }
 
             foreach ($categories as $category) {
@@ -42,6 +49,7 @@ trait CategoryCollectorTrait
                         break;
                     }
                     $category_data[$product['category_id']]['name'] = $category['name'];
+                    $category_data[$product['category_id']]['edition_name'] = $this->edition_name;
                     $category_data[$product['category_id']]['products'][] = $product['product_id'];
 
                     $this->counter++;
